@@ -17,7 +17,7 @@ const InsideStack = createNativeStackNavigator();
 
 function InsideLayout() {
   return (
-    <InsideStack.Navigator initialRouteName="avtivity">
+    <InsideStack.Navigator initialRouteName="top">
       <InsideStack.Screen
         name="avtivity"
         component={Activity}
