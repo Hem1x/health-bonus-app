@@ -2,7 +2,6 @@ import { useState } from 'react';
 import {
   ActivityIndicator,
   Alert,
-  Image,
   StyleSheet,
   Text,
   TextInput,
@@ -12,8 +11,6 @@ import {
 import { FIREBASE_AUTH } from '../../firebase.config';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { FirebaseError } from 'firebase/app';
-import left from '../../assets/icons/left.png';
-import BackBtn from '../../components/BackBtn';
 
 export default function Login({ navigation }) {
   const [email, setEmail] = useState('');

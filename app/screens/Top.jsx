@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import { FIREBASE_AUTH } from '../../firebase.config';
 import { UserContext } from '../../App';
 
-const List = ({ navigation }) => {
+const Top = ({ navigation }) => {
   return (
     <View>
       <Button
@@ -17,4 +17,4 @@ const List = ({ navigation }) => {
   );
 };
 
-export default List;
+export default Top;

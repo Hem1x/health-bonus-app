@@ -1,24 +1,38 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Login from './app/screens/Login';
-import Register from './app/screens/Register';
-import Details from './app/screens/Details';
-import List from './app/screens/List';
 import { useEffect, useState } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
 import { FIREBASE_AUTH } from './firebase.config';
+
+import Login from './app/screens/Login';
+import Register from './app/screens/Register';
 import Greet from './app/screens/Greet';
 
-import BackBtn from './components/BackBtn';
+import Activity from './app/screens/Activity';
+import Top from './app/screens/Top';
+import Profile from './app/screens/Profile';
 
 const Stack = createNativeStackNavigator();
 const InsideStack = createNativeStackNavigator();
 
 function InsideLayout() {
   return (
-    <InsideStack.Navigator>
-      <InsideStack.Screen name="My todos" component={List} />
-      <InsideStack.Screen name="details" component={Details} />
+    <InsideStack.Navigator initialRouteName="avtivity">
+      <InsideStack.Screen
+        name="avtivity"
+        component={Activity}
+        options={{ headerShown: false }}
+      />
+      <InsideStack.Screen
+        name="top"
+        component={Top}
+        options={{ headerShown: false }}
+      />
+      <InsideStack.Screen
+        name="profile"
+        component={Profile}
+        options={{ headerShown: false }}
+      />
     </InsideStack.Navigator>
   );
 }
@@ -39,7 +53,6 @@ export default function App() {
           <Stack.Screen
             name="Inside"
             component={InsideLayout}
-            initialParams={{ user }}
             options={{ headerShown: false }}
           />
         ) : (
