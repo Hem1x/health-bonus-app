@@ -18,9 +18,12 @@ const ActivityScrollBar = () => {
 
   return (
     <ScrollView horizontal={true} style={{}}>
-      {data.map((item) => (
-        <ActivityConvert key={item.text} data={item} />
-      ))}
+      {data.map(
+        (item) =>
+          item.from !== 0 && (
+            <ActivityConvert key={item.text} data={item} />
+          ),
+      )}
     </ScrollView>
   );
 };
