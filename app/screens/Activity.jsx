@@ -106,7 +106,7 @@ export default function Activity({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 20,
-    paddingTop: 90,
+    paddingTop: 40,
   },
   title: {
     fontSize: 34,

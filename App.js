@@ -11,7 +11,7 @@ import Greet from './app/screens/Greet';
 import Activity from './app/screens/Activity';
 import Top from './app/screens/Top';
 import Profile from './app/screens/Profile';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Image, StatusBar, StyleSheet, Text, View } from 'react-native';
 
 const Stack = createNativeStackNavigator();
 const InsideStack = createNativeStackNavigator();
@@ -50,6 +50,10 @@ export default function App() {
   return (
     <>
       <NavigationContainer>
+        <StatusBar
+          backgroundColor={'#F8F9FD'}
+          networkActivityIndicatorVisible={true}
+        />
         <Stack.Navigator initialRouteName="greet">
           {user ? (
             <Stack.Screen
