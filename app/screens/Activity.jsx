@@ -1,21 +1,105 @@
-import { View, Text, StyleSheet } from 'react-native';
-import React from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Image,
+  ScrollView,
+} from 'react-native';
+import React, { useState } from 'react';
 import ActivityCurrent from '../../components/ActivityCurrent';
 import ActivityScrollBar from '../../components/ActivityScrollBar';
+import User from '../../assets/icons/User.png';
+import HomeActive from '../../assets/icons/HomeActive.png';
+import { FIREBASE_AUTH } from '../../firebase.config';
+import { Picker } from '@react-native-picker/picker';
 
-export default function Activity() {
+export const fondTabs = [
+  'Фонд "Свет"',
+  'Фонд "Добро"',
+  'Фонд "Сердце"',
+  'Фонд "Дружба"',
+  'Фонд "Цветок"',
+];
+export default function Activity({ navigation }) {
+  const [fond, setFond] = useState(fondTabs[0]);
+
   return (
-    <View style={{ backgroundColor: '#F8F9FD' }}>
-      <View style={styles.container}>
-        <Text style={styles.title}>Активность - во благо</Text>
-        <Text style={styles.text}>
-          Приложение для конвертации активности в пожертвоварния
-          благотворительным фондам
-        </Text>
-        <ActivityCurrent />
+    <>
+      <ScrollView>
+        <View
+          style={{
+            backgroundColor: '#F8F9FD',
+            height: '100%',
+          }}>
+          <View style={styles.container}>
+            <Text style={styles.title}>Активность - во благо</Text>
+            <Text style={styles.text}>
+              Приложение для конвертации активности в пожертвоварния
+              благотворительным фондам
+            </Text>
+            <ActivityCurrent />
+            <Picker
+              style={{
+                marginBottom: 10,
+              }}
+              dropdownIconColor="#6574F7"
+              selectedValue={fond}
+              onValueChange={(itemValue) => setFond(itemValue)}>
+              <Picker.Item
+                style={{ color: '#6574F7' }}
+                label={fondTabs[0]}
+                value={fondTabs[0]}
+              />
+              <Picker.Item
+                style={{ color: '#6574F7' }}
+                label={fondTabs[1]}
+                value={fondTabs[1]}
+              />
+              <Picker.Item
+                style={{ color: '#6574F7' }}
+                label={fondTabs[2]}
+                value={fondTabs[2]}
+              />
+              <Picker.Item
+                style={{ color: '#6574F7' }}
+                label={fondTabs[3]}
+                value={fondTabs[3]}
+              />
+              <Picker.Item
+                style={{ color: '#6574F7' }}
+                label={fondTabs[4]}
+                value={fondTabs[4]}
+              />
+            </Picker>
+          </View>
+
+          <ActivityScrollBar fond={fond} />
+          <TouchableOpacity
+            onPress={() => FIREBASE_AUTH.signOut()}
+            style={{
+              marginBottom: 70,
+              backgroundColor: '#F0F0F0',
+              width: '100%',
+              paddingVertical: 15,
+              alignContent: 'center',
+            }}>
+            <Text style={{ textAlign: 'center', color: 'red' }}>
+              Выйти из аккаунта
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
+      <View style={styles.navigation}>
+        <TouchableOpacity onPress={() => navigation.navigate('top')}>
+          <Image source={User} />
+        </TouchableOpacity>
+
+        <TouchableOpacity>
+          <Image source={HomeActive} />
+        </TouchableOpacity>
       </View>
-      <ActivityScrollBar />
-    </View>
+    </>
   );
 }
 
@@ -28,14 +112,23 @@ const styles = StyleSheet.create({
     fontSize: 34,
     fontWeight: '600',
     letterSpacing: 3.4,
-
+    color: '#5A6DF6',
     marginBottom: 15,
   },
   text: {
     fontSize: 12,
     fontWeight: '400',
     color: '#6C79A3',
-    marginBottom: 35,
+    marginBottom: 25,
     lineHeight: 20,
+  },
+  navigation: {
+    position: 'absolute',
+    width: '100%',
+    bottom: 0,
+    backgroundColor: 'white',
+    paddingVertical: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
   },
 });

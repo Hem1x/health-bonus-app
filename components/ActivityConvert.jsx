@@ -1,7 +1,8 @@
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import React from 'react';
+import React, { useEffect } from 'react';
+import { fondTabs } from '../app/screens/Activity';
 
-const ActivityConvert = ({ data }) => {
+const ActivityConvert = ({ data, fond }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Доступно для конвертирвания</Text>
@@ -12,7 +13,7 @@ const ActivityConvert = ({ data }) => {
         <Text style={styles.convertDataItem}>~</Text>
         <Text style={styles.convertDataItem}>{data.to} руб</Text>
       </View>
-      <Text style={styles.fond}>Фонд "{data.fond}"</Text>
+      <Text style={styles.fond}>{fond}</Text>
       <TouchableOpacity style={styles.btn}>
         <Text style={styles.btnText}>Конвертировать</Text>
       </TouchableOpacity>
@@ -44,6 +45,7 @@ const styles = StyleSheet.create({
   convertDataItem: {
     fontSize: 24,
     fontWeight: '600',
+    color: '#5A6DF6',
   },
   fond: {
     fontSize: 14,

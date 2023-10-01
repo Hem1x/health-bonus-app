@@ -5,7 +5,7 @@ const ActivityCurrent = () => {
   const data = [
     {
       text: 'Пожертвовано',
-      data: 10,
+      data: 0,
       color: '2EE700',
     },
     {
@@ -59,8 +59,8 @@ const ActivityCurrent = () => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingRight: 10,
-    marginBottom: 35,
+    paddingHorizontal: 10,
+    marginBottom: 30,
   },
   title: {
     fontWeight: '500',
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
   actData: {
     fontSize: 20,
     fontWeight: '500',
-    textAlign: 'right',
+    textAlign: 'left',
   },
 });
 
