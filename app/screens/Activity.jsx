@@ -25,10 +25,10 @@ export default function Activity({ navigation }) {
   const [fond, setFond] = useState(fondTabs[0]);
   const [score, setScore] = useState({
     donated: 0,
-    steps: 500,
-    run: 120,
-    cycle: 0,
-    swim: 0,
+    steps: Math.floor(Math.random() * 4000),
+    run: Math.floor(Math.random() * 2000),
+    cycle: Math.floor(Math.random() * 20),
+    swim: Math.floor(Math.random() * 1000),
   });
 
   return (

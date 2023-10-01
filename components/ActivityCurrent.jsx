@@ -24,7 +24,7 @@ const ActivityCurrent = ({ score }) => {
       color: '699BF7',
     },
     {
-      text: 'Плавание',
+      text: 'Плавание, м',
       data: score.swim,
       color: 'FFAA00',
     },
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
   activity: {
     flexWrap: 'wrap',
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
     gap: 50,
   },
   activityItem: {},

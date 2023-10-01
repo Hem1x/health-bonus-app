@@ -9,6 +9,9 @@ import React from 'react';
 import ActivityConvert from './ActivityConvert';
 
 const convertTo = (activity) => {
+  if (activity <= 20) {
+    return Math.ceil(activity);
+  }
   return Math.ceil(activity * 0.04);
 };
 
@@ -34,7 +37,7 @@ const ActivityScrollBar = ({ fond, setScore, score }) => {
     },
     {
       keyValue: 'swim',
-      text: 'плавание',
+      text: 'м плавание',
       from: score.swim,
       to: convertTo(score.swim),
     },
