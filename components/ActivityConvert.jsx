@@ -2,7 +2,16 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import React, { useEffect } from 'react';
 import { fondTabs } from '../app/screens/Activity';
 
-const ActivityConvert = ({ data, fond }) => {
+const ActivityConvert = ({ data, fond, setScore, score, keyValue }) => {
+  const handlePress = () => {
+    console.log(score);
+    setScore({
+      ...score,
+      donated: score.donated + data.to,
+      [keyValue]: 0,
+    });
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Доступно для конвертирвания</Text>
@@ -14,7 +23,7 @@ const ActivityConvert = ({ data, fond }) => {
         <Text style={styles.convertDataItem}>{data.to} руб</Text>
       </View>
       <Text style={styles.fond}>{fond}</Text>
-      <TouchableOpacity style={styles.btn}>
+      <TouchableOpacity style={styles.btn} onPress={handlePress}>
         <Text style={styles.btnText}>Конвертировать</Text>
       </TouchableOpacity>
     </View>

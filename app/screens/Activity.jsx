@@ -23,6 +23,13 @@ export const fondTabs = [
 ];
 export default function Activity({ navigation }) {
   const [fond, setFond] = useState(fondTabs[0]);
+  const [score, setScore] = useState({
+    donated: 0,
+    steps: 500,
+    run: 120,
+    cycle: 0,
+    swim: 0,
+  });
 
   return (
     <>
@@ -38,43 +45,63 @@ export default function Activity({ navigation }) {
               Приложение для конвертации активности в пожертвоварния
               благотворительным фондам
             </Text>
-            <ActivityCurrent />
-            <Picker
-              style={{
-                marginBottom: 10,
-              }}
-              dropdownIconColor="#6574F7"
-              selectedValue={fond}
-              onValueChange={(itemValue) => setFond(itemValue)}>
-              <Picker.Item
-                style={{ color: '#6574F7' }}
-                label={fondTabs[0]}
-                value={fondTabs[0]}
-              />
-              <Picker.Item
-                style={{ color: '#6574F7' }}
-                label={fondTabs[1]}
-                value={fondTabs[1]}
-              />
-              <Picker.Item
-                style={{ color: '#6574F7' }}
-                label={fondTabs[2]}
-                value={fondTabs[2]}
-              />
-              <Picker.Item
-                style={{ color: '#6574F7' }}
-                label={fondTabs[3]}
-                value={fondTabs[3]}
-              />
-              <Picker.Item
-                style={{ color: '#6574F7' }}
-                label={fondTabs[4]}
-                value={fondTabs[4]}
-              />
-            </Picker>
+            <ActivityCurrent score={score} setScore={setScore} />
           </View>
 
-          <ActivityScrollBar fond={fond} />
+          {!(
+            score.cycle === 0 &&
+            score.steps === 0 &&
+            score.run === 0 &&
+            score.swim === 0
+          ) ? (
+            <>
+              <Picker
+                style={{
+                  marginBottom: 10,
+                }}
+                dropdownIconColor="#6574F7"
+                selectedValue={fond}
+                onValueChange={(itemValue) => setFond(itemValue)}>
+                <Picker.Item
+                  style={{ color: '#6574F7' }}
+                  label={fondTabs[0]}
+                  value={fondTabs[0]}
+                />
+                <Picker.Item
+                  style={{ color: '#6574F7' }}
+                  label={fondTabs[1]}
+                  value={fondTabs[1]}
+                />
+                <Picker.Item
+                  style={{ color: '#6574F7' }}
+                  label={fondTabs[2]}
+                  value={fondTabs[2]}
+                />
+                <Picker.Item
+                  style={{ color: '#6574F7' }}
+                  label={fondTabs[3]}
+                  value={fondTabs[3]}
+                />
+                <Picker.Item
+                  style={{ color: '#6574F7' }}
+                  label={fondTabs[4]}
+                  value={fondTabs[4]}
+                />
+              </Picker>
+              <ActivityScrollBar
+                fond={fond}
+                setScore={setScore}
+                score={score}
+              />
+            </>
+          ) : (
+            <View style={{ padding: 3, marginBottom: 100 }}>
+              <Text style={{ textAlign: 'center', marginTop: 60 }}>
+                У вас нет активности
+              </Text>
+            </View>
+          )}
+
           <TouchableOpacity
             onPress={() => FIREBASE_AUTH.signOut()}
             style={{

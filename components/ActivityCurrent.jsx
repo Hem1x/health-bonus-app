@@ -1,31 +1,31 @@
 import { View, Text, StyleSheet } from 'react-native';
 import React from 'react';
 
-const ActivityCurrent = () => {
+const ActivityCurrent = ({ score }) => {
   const data = [
     {
       text: 'Пожертвовано',
-      data: 0,
+      data: score.donated,
       color: '2EE700',
     },
     {
       text: 'Шаги',
-      data: 500,
+      data: score.steps,
       color: 'FF044F',
     },
     {
       text: 'Бег, м',
-      data: 120,
+      data: score.run,
       color: '1E3ECB',
     },
     {
       text: 'Велосипед, км',
-      data: 0,
+      data: score.cycle,
       color: '699BF7',
     },
     {
       text: 'Плавание',
-      data: 0,
+      data: score.swim,
       color: 'FFAA00',
     },
   ];

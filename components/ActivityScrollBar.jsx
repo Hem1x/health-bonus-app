@@ -8,12 +8,36 @@ import {
 import React from 'react';
 import ActivityConvert from './ActivityConvert';
 
-const ActivityScrollBar = ({ fond }) => {
+const convertTo = (activity) => {
+  return Math.ceil(activity * 0.04);
+};
+
+const ActivityScrollBar = ({ fond, setScore, score }) => {
   const data = [
-    { text: 'шагов', from: 500, to: 20 },
-    { text: 'м бег', from: 120, to: 5 },
-    { text: 'км велосипед', from: 0, to: 0 },
-    { text: 'плавание', from: 0, to: 0 },
+    {
+      keyValue: 'steps',
+      text: 'шагов',
+      from: score.steps,
+      to: convertTo(score.steps),
+    },
+    {
+      keyValue: 'run',
+      text: 'м бег',
+      from: score.run,
+      to: convertTo(score.run),
+    },
+    {
+      keyValue: 'cycle',
+      text: 'км велосипед',
+      from: score.cycle,
+      to: convertTo(score.cycle),
+    },
+    {
+      keyValue: 'swim',
+      text: 'плавание',
+      from: score.swim,
+      to: convertTo(score.swim),
+    },
   ];
 
   return (
@@ -21,7 +45,14 @@ const ActivityScrollBar = ({ fond }) => {
       {data.map(
         (item) =>
           item.from !== 0 && (
-            <ActivityConvert key={item.text} data={item} fond={fond} />
+            <ActivityConvert
+              key={item.text}
+              data={item}
+              fond={fond}
+              keyValue={item.keyValue}
+              score={score}
+              setScore={setScore}
+            />
           ),
       )}
     </ScrollView>
